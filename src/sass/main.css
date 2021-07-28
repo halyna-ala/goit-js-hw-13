@@ -94,7 +94,9 @@ li {
   transform: scale(1.03);
   cursor: zoom-in;
 }
-
+.is-hidden {
+  display: none;
+}
 .load-more {
   margin-top: 40px;
   margin-bottom: 40px;
