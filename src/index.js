@@ -22,12 +22,12 @@ btnLoadMore.refs.button.addEventListener('click', onLoardMore);
 
 const newsApiService = new NewsApiService();
 const btnLoadMore = new BtnLoadMore(
-    'load-more'
-    // {
-    // selector: '[data-action="btn"]',
+
+    {
+    selector: '[data-action="btn"]',
     
-    // hidden: true,
-    // }
+    hidden: true,
+    }
 );
 
 console.log(btnLoadMore);
