@@ -1,4 +1,5 @@
 import NewsApiService from './js/pixabay-service';
+import BtnLoadMore from './js/lead-more-btn';
 import articalesTpl from './templares/image.hbs';
 import Notiflix from 'notiflix';
 
@@ -9,7 +10,7 @@ import './sass/main.css';
 
 const refs = {
   serchForm : document.querySelector('#search-form'),
-  btnLoadMore : document.querySelector('.load-more'),
+//   btnLoadMore : document.querySelector('.load-more'),
   gallery : document.querySelector('.gallery'),
   
 }
@@ -17,10 +18,19 @@ const refs = {
 
 
 refs.serchForm.addEventListener('submit', onSearch);
-refs.btnLoadMore.addEventListener('click', onLoardMore);
+btnLoadMore.refs.button.addEventListener('click', onLoardMore);
 
 const newsApiService = new NewsApiService();
+const btnLoadMore = new BtnLoadMore(
+    'load-more'
+    // {
+    // selector: '[data-action="btn"]',
+    
+    // hidden: true,
+    // }
+);
 
+console.log(btnLoadMore);
 // refs.btnLoadMore.disabled = true;
 // let totalpage = 0;
 
