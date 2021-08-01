@@ -98,25 +98,23 @@ li {
   display: none;
 }
 .load-more {
-  margin-top: 40px;
-  margin-bottom: 40px;
-  min-width: 73px;
-  border-radius: 4px;
-  padding: 10px 22px;
-
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.6;
+  align-self: center;
   text-align: center;
-  letter-spacing: 0.03em;
+
+  color: #6b37e2;
+  padding: 10px;
+  border: 0;
+  width: 200px;
+  margin-top: 10px;
+  border-radius: 5px;
+  /* visibility: hidden; */
 
   border: none;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover,
-  &:focus {
-    color: white;
-    background-color: rgb(40, 38, 165);
-  }
+}
+.load-more:hover {
+  color: white;
+  background-color: rgb(40, 38, 165);
+  cursor: pointer;
 }

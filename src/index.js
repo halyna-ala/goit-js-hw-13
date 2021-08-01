@@ -1,5 +1,5 @@
 import NewsApiService from './js/pixabay-service';
-import BtnLoadMore from './js/lead-more-btn';
+// import BtnLoadMore from './js/lead-more-btn';
 import articalesTpl from './templares/image.hbs';
 import Notiflix from 'notiflix';
 
@@ -10,27 +10,29 @@ import './sass/main.css';
 
 const refs = {
   serchForm : document.querySelector('#search-form'),
-//   btnLoadMore : document.querySelector('.load-more'),
+  btnLoadMore : document.querySelector('.load-more'),
   gallery : document.querySelector('.gallery'),
-  
+  submitBtn: document.querySelector('.submit-btn'),
 }
 
 
 
+// const btnLoadMore = new BtnLoadMore(
+
+//     {
+//     selector: '[data-action="btn"]',
+//     hidden: true,
+//     }
+//     );
+//     console.log(btnLoadMore);
+
+
 refs.serchForm.addEventListener('submit', onSearch);
-btnLoadMore.refs.button.addEventListener('click', onLoardMore);
+refs.btnLoadMore.addEventListener('click', onLoardMore);
+// refs.button.btnLoadMore.addEventListener('click', onLoardMore);
 
 const newsApiService = new NewsApiService();
-const btnLoadMore = new BtnLoadMore(
 
-    {
-    selector: '[data-action="btn"]',
-    
-    hidden: true,
-    }
-);
-
-console.log(btnLoadMore);
 // refs.btnLoadMore.disabled = true;
 // let totalpage = 0;
 
@@ -62,6 +64,8 @@ async function onLoardMore(){
 function imageMarkup(images) {
     refs.gallery.insertAdjacentHTML('beforeend', articalesTpl(images))
     refs.btnLoadMore.classList.remove('is-hidden')
+    refs.submitBtn.hide()
+
     if (images.length === 0) {
         refs.btnLoadMore.classList.add('is-hidden')
          return Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
