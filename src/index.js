@@ -34,7 +34,7 @@ async function onSearch(e) {
     clearImageContainer();
 
     
-    return await imageMarkup(response);
+    return imageMarkup(response);
 }
 
 async function loadMore() {
