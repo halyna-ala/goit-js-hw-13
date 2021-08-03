@@ -28,7 +28,7 @@ async function onSearch(e){
   e.preventDefault();
   refs.btnLoadMore.disabled = false ;
 
-  newsApiService.query = e.currentTarget.elements.query.value;
+  newsApiService.query = e.currentTarget.elements.searchQuery.value;
 
   if(newsApiService.query === ''){
 
