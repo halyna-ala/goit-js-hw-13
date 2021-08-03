@@ -1,9 +1,9 @@
-// import axios from 'axios';
+import axios from 'axios';
 import Notiflix from "notiflix";
 
 
 const BASE_URL = 'https://pixabay.com/api';
-const KEY = '22615922-71ba88c3fd45c0bbaa03a48de';
+const API_KEY = '22615922-71ba88c3fd45c0bbaa03a48de';
 
 
 // export default class NewsApiService {
@@ -61,7 +61,7 @@ const KEY = '22615922-71ba88c3fd45c0bbaa03a48de';
 // }
 
 
-export default class newsApiService {
+export default class fetchImageApi {
     constructor() {
         this.searchQuery = '';
         this.page = 1;
@@ -69,7 +69,7 @@ export default class newsApiService {
 
 
     fetchImages() {
-        return fetch(`${BASE_URL}?key=${KEY}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${this.page}`)
+        return fetch(`${API_URL}?key=${API_KEY}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${this.page}`)
             .then(response => response.json())
             .then(({ total, hits }) => {
                 if (total > 0 && this.page === 1) {
