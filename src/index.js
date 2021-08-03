@@ -11,7 +11,7 @@ const refs = {
   serchForm : document.querySelector('.search-form'),
   btnLoadMore : document.querySelector('.load-more'),
   gallery : document.querySelector('.gallery'),
-// submitBtn: document.querySelector('.submit-btn'),
+
 }
 
 
@@ -25,9 +25,8 @@ refs.btnLoadMore.addEventListener('click', onLoardMore);
 const newsApiService = new NewsApiService();
 
 async function onSearch(e){
-    e.preventDefault();
-    
-    hiddenLoadMoreBtn();
+  e.preventDefault();
+  refs.btnLoadMore.disabled = false ;
 
   newsApiService.query = e.currentTarget.elements.searchQuery.value;
 
@@ -36,14 +35,10 @@ async function onSearch(e){
       return Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
   }
   newsApiService.resetPage()
-  clearImageContainer();
+  const response = await newsApiService.fetchArticals();
+    clearImageContainer();
 
-    const response = await newsApiService.fetchArticals();
-  return await imageMarkup(response);
-
-
-
-
+    return await imageMarkup(response);
 }
 
 async function onLoardMore(){
@@ -53,19 +48,13 @@ async function onLoardMore(){
 
 function imageMarkup(images) {
     refs.gallery.insertAdjacentHTML('beforeend', articalesTpl(images))
-
-    showLoadMoreBtn();
-
-    // refs.submitBtn.hide()
-
+    refs.btnLoadMore.classList.remove('is-hidden')
     if (images.length === 0) {
-        hiddenLoadMoreBtn();
-
+        refs.btnLoadMore.classList.add('is-hidden')
         return Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
     }
     if (images.length < 40) {
-        hiddenLoadMoreBtn();
-        
+        refs.btnLoadMore.classList.add('is-hidden')
         Notiflix.Notify.info('We are sorry, but you have reached the end of search results.');
     }
 }
@@ -75,10 +64,3 @@ function  clearImageContainer(){
 }
 
 
-function showLoadMoreBtn() {
-    btnLoadMore.classList.remove('is-hidden')
-}
-
-function hiddenLoadMoreBtn() {
-    btnLoadMore.classList.add('is-hidden')
-}
