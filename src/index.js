@@ -39,14 +39,14 @@ async function onSearch(e) {
 
 async function loadMore() {
     const response = await newImageService.fetchImages();
-    return await imageMarkup(response);
+    return  imageMarkup(response);
 }
 
 function imageMarkup(images) {
     refs.cardGallery.insertAdjacentHTML('beforeend', imagesTpl(images))
     refs.loadMoreButton.classList.remove('is-hidden')
 
-    // refs.submitBtn.hide()
+    refs.submitBtn.hide()
      
 
     if (images.length === 0) {
