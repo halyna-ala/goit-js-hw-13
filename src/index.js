@@ -1,62 +1,49 @@
 import NewsApiService from './js/pixabay-service';
 import articalesTpl from './templares/image.hbs';
-import newsApiService from './js/pixabay-service';
-// import BtnLoadMore from './js/lead-more-btn';
-
 import Notiflix from 'notiflix';
 
 import './sass/main.css';
 
- 
+
+
 
 const refs = {
-  serchForm : document.querySelector('#search-form'),
+  serchForm : document.querySelector('.search-form'),
   btnLoadMore : document.querySelector('.load-more'),
   gallery : document.querySelector('.gallery'),
-//   submitBtn: document.querySelector('.submit-btn'),
+
 }
 
-
-
-// const btnLoadMore = new BtnLoadMore(
-
-//     {
-//     selector: '[data-action="btn"]',
-//     hidden: true,
-//     }
-//     );
-//     console.log(btnLoadMore);
 
 
 refs.serchForm.addEventListener('submit', onSearch);
 refs.btnLoadMore.addEventListener('click', onLoardMore);
-// refs.button.btnLoadMore.addEventListener('click', onLoardMore);
-
-const newsApiService = new NewsApiService();
 
 // refs.btnLoadMore.disabled = true;
 // let totalpage = 0;
 
+const newsApiService = new NewsApiService();
 
 async function onSearch(e){
   e.preventDefault();
-  
-    newsApiService.query = e.currentTarget.elements.query.value;
-    
+  refs.btnLoadMore.disabled = false ;
+
+  newsApiService.query = e.currentTarget.elements.query.value;
+
   if(newsApiService.query === ''){
-      
+
       return Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
   }
   newsApiService.resetPage()
-    const response = await newsApiService.fetchArticals();
-    clearGallery();
+  const response = await newsApiService.fetchArticals();
+    clearImageContainer();
 
     return await imageMarkup(response);
-    
+
+
 
 }
 
- 
 async function onLoardMore(){
     const response = await newsApiService.fetchArticals() 
         return imageMarkup(response);
@@ -65,21 +52,16 @@ async function onLoardMore(){
 function imageMarkup(images) {
     refs.gallery.insertAdjacentHTML('beforeend', articalesTpl(images))
     refs.btnLoadMore.classList.remove('is-hidden')
-    // refs.submitBtn.hide()
-
     if (images.length === 0) {
         refs.btnLoadMore.classList.add('is-hidden')
-         return Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
+        return Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
     }
     if (images.length < 40) {
         refs.btnLoadMore.classList.add('is-hidden')
         Notiflix.Notify.info('We are sorry, but you have reached the end of search results.');
     }
-    }
-
-
-
-function clearGallery(){
-    refs.gallery.innerHTML = ''
 }
 
+function  clearImageContainer(){
+    refs.gallery.innerHTML = '';
+}
