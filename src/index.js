@@ -25,8 +25,9 @@ refs.btnLoadMore.addEventListener('click', onLoardMore);
 const newsApiService = new NewsApiService();
 
 async function onSearch(e){
-  e.preventDefault();
-  refs.btnLoadMore.disabled = false ;
+    e.preventDefault();
+    
+    hiddenLoadMoreBtn();
 
   newsApiService.query = e.currentTarget.elements.searchQuery.value;
 
@@ -35,10 +36,11 @@ async function onSearch(e){
       return Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
   }
   newsApiService.resetPage()
-  const response = await newsApiService.fetchArticals();
-    clearImageContainer();
+  clearImageContainer();
 
-    return await imageMarkup(response);
+    const response = await newsApiService.fetchArticals();
+  return await imageMarkup(response);
+
 
 
 
@@ -51,17 +53,30 @@ async function onLoardMore(){
 
 function imageMarkup(images) {
     refs.gallery.insertAdjacentHTML('beforeend', articalesTpl(images))
-    refs.btnLoadMore.classList.remove('is-hidden')
+
+    showLoadMoreBtn();
+
     if (images.length === 0) {
-        refs.btnLoadMore.classList.add('is-hidden')
+        hiddenLoadMoreBtn();
+
         return Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
     }
     if (images.length < 40) {
-        refs.btnLoadMore.classList.add('is-hidden')
+        hiddenLoadMoreBtn();
+        
         Notiflix.Notify.info('We are sorry, but you have reached the end of search results.');
     }
 }
 
 function  clearImageContainer(){
     refs.gallery.innerHTML = '';
+}
+
+
+function showLoadMoreBtn() {
+    btnLoadMore.classList.remove('is-hidden')
+}
+
+function hiddenLoadMoreBtn() {
+    btnLoadMore.classList.add('is-hidden')
 }
