@@ -39,7 +39,7 @@ async function onSearch(e) {
 
 async function loadMore() {
     const response = await newImageService.fetchImages();
-    return imageMarkup(response);
+    return await imageMarkup(response);
 }
 
 function imageMarkup(images) {
