@@ -11,7 +11,7 @@ const refs = {
   serchForm : document.querySelector('.search-form'),
   btnLoadMore : document.querySelector('.load-more'),
   gallery : document.querySelector('.gallery'),
-submitBtn: document.querySelector('.submit-btn'),
+// submitBtn: document.querySelector('.submit-btn'),
 }
 
 
@@ -56,7 +56,7 @@ function imageMarkup(images) {
 
     showLoadMoreBtn();
 
-    refs.submitBtn.hide()
+    // refs.submitBtn.hide()
 
     if (images.length === 0) {
         hiddenLoadMoreBtn();
