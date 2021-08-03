@@ -1,6 +1,6 @@
 {{#each this}}
 
-<li class="image-card">
+{{!-- <li class="image-card">
     <div class="photo-card">
         <img class="image-item" src="{{webformatURL}}" alt="{{tags}}" data-source="{{largeImageURL}}" />
         <div class="stats">
@@ -22,5 +22,26 @@
             </p>
         </div>
     </div>
-</li>
+</li> --}}
+<div class="photo-card">
+    <img src="{{webformatURL}}" alt="{{tags}}" loading="lazy" />
+    <div class="info">
+        <p class="info-item">
+            <b class="info-item--name">Likes</b>
+            <b>{{likes}}</b>
+        </p>
+        <p class="info-item">
+            <b class="info-item--name">Views</b>
+            <b>{{views}}</b>
+        </p>
+        <p class="info-item">
+            <b class="info-item--name">Comments</b>
+            <b>{{comments}}</b>
+        </p>
+        <p class="info-item">
+            <b class="info-item--name">Downloads</b>
+            <b>{{downloads}}</b>
+        </p>
+    </div>
+</div>
 {{/each}}
