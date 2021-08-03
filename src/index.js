@@ -70,7 +70,7 @@ function imageMarkup(images) {
         // hiddenLoadMoreBtn();
         return Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
     }
-    if (images.length < 40) {
+    if (images.length < 50) {
         refs.btnLoadMore.classList.add('is-hidden');
 
         // hiddenLoadMoreBtn();
