@@ -19,6 +19,7 @@ const refs = {
 refs.serchForm.addEventListener('submit', onSearch);
 refs.btnLoadMore.addEventListener('click', onLoardMore);
 
+
 // refs.btnLoadMore.disabled = true;
 // let totalpage = 0;
 
@@ -32,12 +33,14 @@ async function onSearch(e){
 //   refs.btnLoadMore.disabled = false ;
     refs.btnLoadMore.classList.add('is-hidden');
     // hiddenLoadMoreBtn();
-    
+
   newsApiService.query = e.currentTarget.elements.searchQuery.value;
 
   if(newsApiService.query === ''){
 
       return Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
+      
+    
   }
   newsApiService.resetPage()
     clearImageContainer();
@@ -58,25 +61,29 @@ function imageMarkup(images) {
     refs.gallery.insertAdjacentHTML('beforeend', articalesTpl(images))
 
     // isHiddenFolse();
-
     refs.btnLoadMore.classList.remove('is-hidden')
     // showLoadMoreBtn();
-
-// refs.submitBtn.hide()
-
+    
+    // refs.submitBtn.hide()
+    
     if (images.length === 0) {
-        refs.btnLoadMore.classList.add('is-hidden');
-
+        // refs.btnLoadMore.classList.add('is-hidden');
+        
+        checkEndOf();
         // hiddenLoadMoreBtn();
         return Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
     }
-    if (images.length < 50) {
-        refs.btnLoadMore.classList.add('is-hidden');
-
-        // hiddenLoadMoreBtn();
-        Notiflix.Notify.info('We are sorry, but you have reached the end of search results.');
+    // function checkEndOf () {
+    // if (newsApiService.page > totalpage){
+        if (images.length < 40) {
+            refs.btnLoadMore.classList.add('is-hidden');
+    
+            // hiddenLoadMoreBtn();
+        Notiflix.Notify.info('We are sorry, but you have reached the end of search results.')
+        refs.btnLoadMore.style.display="none"
     }
 }
+
 
 function  clearImageContainer(){
     refs.gallery.innerHTML = '';
