@@ -75,7 +75,7 @@ function imageMarkup(images) {
     }
     // function checkEndOf () {
     // if (newsApiService.page > totalpage){
-        if (images.length < this.per_page) {
+        if (images.length < newsApiService.per_page) {
             refs.btnLoadMore.classList.add('is-hidden');
     
             // refs.btnLoadMore.style.display="none"
