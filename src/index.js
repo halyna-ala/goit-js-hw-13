@@ -67,20 +67,20 @@ function imageMarkup(images) {
     // refs.submitBtn.hide()
     
     if (images.length === 0) {
-        // refs.btnLoadMore.classList.add('is-hidden');
+        refs.btnLoadMore.classList.add('is-hidden');
         
-        checkEndOf();
+        // checkEndOf();
         // hiddenLoadMoreBtn();
         return Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
     }
     // function checkEndOf () {
     // if (newsApiService.page > totalpage){
-        if (images.length < 40) {
+        if (images.length < this.per_page) {
             refs.btnLoadMore.classList.add('is-hidden');
     
+            // refs.btnLoadMore.style.display="none"
             // hiddenLoadMoreBtn();
         Notiflix.Notify.info('We are sorry, but you have reached the end of search results.')
-        refs.btnLoadMore.style.display="none"
     }
 }
 
